@@ -1,0 +1,3 @@
+/home/benjamin/Desktop/School/cpp/kmir/build/CMakeFiles/rebuild_cache.dir
+/home/benjamin/Desktop/School/cpp/kmir/build/CMakeFiles/edit_cache.dir
+/home/benjamin/Desktop/School/cpp/kmir/build/CMakeFiles/kmir.dir

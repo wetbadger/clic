@@ -1,0 +1,49 @@
+This is currently only an idea for Kmir. The actual implementation is subject to change.
+
+Kmir is a simple educational interpreted programming language, where everything is a list! The language features: Extremely Weak Typing, line breaks to indicate new line rather than semicolons, and humorous error messages.
+
+Where other languages have "blocks" Kmir only has lists. That means [x = 1 + 1, print(x), print("Hello World!")] is an valid line of code that will output:
+2
+Hello World!
+
+Arrays can be assigned to a variable and executed later as a function. For example:
+    x = [print(1), print(2), print(3)]
+    x()
+Will output:
+1
+2
+3
+
+You won't need to use commas if your code is separated by multiple lines.
+
+    #this:
+    if true [
+        print("true")
+    ]
+    else [
+        print("false")
+        if true [
+            print("also this")
+        ]
+    ]
+    #is the same as this:
+    [if true [print("true")], else [print("false"), if true [print("also this")]]]
+
+Extremely weak typing means, variables don't need to be declared or assigned. If the interpreter doesn't recognize a series of characters, it will assign it a value of null and happily continue without an error message.
+
+Efficiency was not a consideration when making this language.
+
+As we make this language, we might "finish" a feature, but realize that it could be much much better. Post your hopes and dreams here...
+    Math with numbers larger than (or smaller than) 2^31-1 
+        addition: @https://www.geeksforgeeks.org/sum-two-large-numbers/
+        multiplication: @https://www.aimath.org/news/congruentnumbers/howtomultiply.html (yikes)
+        (could also use long)
+
+Bugs/Features:
+
+    All lines start with a null token for some reason.
+
+Works Cited/Influences:
+    @https://www.youtube.com/watch?v=Eythq9848Fg - Series on Making your own programming language in Python
+    @https://riptutorial.com/cplusplus/example/23640/custom-exception - Tutorial on custom exceptions in C++
+
