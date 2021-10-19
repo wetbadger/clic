@@ -47,6 +47,7 @@ class Token {
         bool get_bool_value();
         string get_value();
         //T get_value();
+        void set_type(TT);
         TT get_type();
         virtual string get_name();
         virtual string to_string();

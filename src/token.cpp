@@ -74,6 +74,10 @@ string Token::get_name() {
     return name;
 }
 
+void Token::set_type(TT type) {
+    this->type = type;
+}
+
 TT Token::get_type() {
     return type;
 }
