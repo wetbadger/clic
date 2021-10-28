@@ -1,3 +1,6 @@
+#ifndef NODES_H
+#define NODES_H
+
 #include "token.h"
  
 struct Node {
@@ -24,3 +27,5 @@ class Tree {
     Node *root; //pointer to a root element
 };
 */
+
+#endif

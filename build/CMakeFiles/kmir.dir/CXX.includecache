@@ -12,6 +12,16 @@ exception
 iostream
 -
 
+/home/benjamin/Desktop/School/cpp/kmir/src/interpreter.h
+iostream
+-
+algorithm
+-
+vector
+-
+nodes.h
+/home/benjamin/Desktop/School/cpp/kmir/src/nodes.h
+
 /home/benjamin/Desktop/School/cpp/kmir/src/lexer.cpp
 lexer.h
 /home/benjamin/Desktop/School/cpp/kmir/src/lexer.h
@@ -39,6 +49,8 @@ lexer.h
 /home/benjamin/Desktop/School/cpp/kmir/src/lexer.h
 parser.h
 /home/benjamin/Desktop/School/cpp/kmir/src/parser.h
+interpreter.h
+/home/benjamin/Desktop/School/cpp/kmir/src/interpreter.h
 iostream
 -
 fstream

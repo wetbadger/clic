@@ -1,6 +1,12 @@
 [
 {
   "directory": "/home/benjamin/Desktop/School/cpp/kmir/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -o CMakeFiles/kmir.dir/src/interpreter.cpp.o -c /home/benjamin/Desktop/School/cpp/kmir/src/interpreter.cpp",
+  "file": "/home/benjamin/Desktop/School/cpp/kmir/src/interpreter.cpp"
+},
+
+{
+  "directory": "/home/benjamin/Desktop/School/cpp/kmir/build",
   "command": "/bin/x86_64-linux-gnu-g++-9    -g   -o CMakeFiles/kmir.dir/src/lexer.cpp.o -c /home/benjamin/Desktop/School/cpp/kmir/src/lexer.cpp",
   "file": "/home/benjamin/Desktop/School/cpp/kmir/src/lexer.cpp"
 },
@@ -33,6 +39,12 @@
   "directory": "/home/benjamin/Desktop/School/cpp/kmir/build",
   "command": "/bin/x86_64-linux-gnu-g++-9    -g   -o CMakeFiles/kmir.dir/src/position.cpp.o -c /home/benjamin/Desktop/School/cpp/kmir/src/position.cpp",
   "file": "/home/benjamin/Desktop/School/cpp/kmir/src/position.cpp"
+},
+
+{
+  "directory": "/home/benjamin/Desktop/School/cpp/kmir/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -o CMakeFiles/kmir.dir/src/result.cpp.o -c /home/benjamin/Desktop/School/cpp/kmir/src/result.cpp",
+  "file": "/home/benjamin/Desktop/School/cpp/kmir/src/result.cpp"
 },
 
 {

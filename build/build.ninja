@@ -61,6 +61,12 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 
 build cmake_object_order_depends_target_kmir: phony || CMakeFiles/kmir.dir
 
+build CMakeFiles/kmir.dir/src/interpreter.cpp.o: CXX_COMPILER__kmir ../src/interpreter.cpp || cmake_object_order_depends_target_kmir
+  DEP_FILE = CMakeFiles/kmir.dir/src/interpreter.cpp.o.d
+  FLAGS = -g
+  OBJECT_DIR = CMakeFiles/kmir.dir
+  OBJECT_FILE_DIR = CMakeFiles/kmir.dir/src
+
 build CMakeFiles/kmir.dir/src/lexer.cpp.o: CXX_COMPILER__kmir ../src/lexer.cpp || cmake_object_order_depends_target_kmir
   DEP_FILE = CMakeFiles/kmir.dir/src/lexer.cpp.o.d
   FLAGS = -g
@@ -97,6 +103,12 @@ build CMakeFiles/kmir.dir/src/position.cpp.o: CXX_COMPILER__kmir ../src/position
   OBJECT_DIR = CMakeFiles/kmir.dir
   OBJECT_FILE_DIR = CMakeFiles/kmir.dir/src
 
+build CMakeFiles/kmir.dir/src/result.cpp.o: CXX_COMPILER__kmir ../src/result.cpp || cmake_object_order_depends_target_kmir
+  DEP_FILE = CMakeFiles/kmir.dir/src/result.cpp.o.d
+  FLAGS = -g
+  OBJECT_DIR = CMakeFiles/kmir.dir
+  OBJECT_FILE_DIR = CMakeFiles/kmir.dir/src
+
 build CMakeFiles/kmir.dir/src/token.cpp.o: CXX_COMPILER__kmir ../src/token.cpp || cmake_object_order_depends_target_kmir
   DEP_FILE = CMakeFiles/kmir.dir/src/token.cpp.o.d
   FLAGS = -g
@@ -111,7 +123,7 @@ build CMakeFiles/kmir.dir/src/token.cpp.o: CXX_COMPILER__kmir ../src/token.cpp |
 #############################################
 # Link the executable kmir
 
-build kmir: CXX_EXECUTABLE_LINKER__kmir CMakeFiles/kmir.dir/src/lexer.cpp.o CMakeFiles/kmir.dir/src/main.cpp.o CMakeFiles/kmir.dir/src/nodes.cpp.o CMakeFiles/kmir.dir/src/number.cpp.o CMakeFiles/kmir.dir/src/parser.cpp.o CMakeFiles/kmir.dir/src/position.cpp.o CMakeFiles/kmir.dir/src/token.cpp.o
+build kmir: CXX_EXECUTABLE_LINKER__kmir CMakeFiles/kmir.dir/src/interpreter.cpp.o CMakeFiles/kmir.dir/src/lexer.cpp.o CMakeFiles/kmir.dir/src/main.cpp.o CMakeFiles/kmir.dir/src/nodes.cpp.o CMakeFiles/kmir.dir/src/number.cpp.o CMakeFiles/kmir.dir/src/parser.cpp.o CMakeFiles/kmir.dir/src/position.cpp.o CMakeFiles/kmir.dir/src/result.cpp.o CMakeFiles/kmir.dir/src/token.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/kmir.dir
   POST_BUILD = :

@@ -2,6 +2,7 @@
 
 #include "lexer.h"
 #include "parser.h"
+#include "interpreter.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -55,7 +56,9 @@ int main () {
     Parser *parser = new Parser(lex->get_tokens());
     Node* ast = parser->parse();
 
-    //cout << ast.to_string();
+    //Run Program
+    Interpreter *interpreter = new Interpreter();
+    interpreter->visit(ast);
     
     cout << print_token_list(lex) << endl; //outputs your string as a list of tokens and values
   } while (line != "end");

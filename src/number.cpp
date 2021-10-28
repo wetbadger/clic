@@ -75,3 +75,37 @@ double Number::string_to_float() {
     }
     return d;
 }
+
+Number Number::set_position(int start = NULL, int end = NULL) {
+    this->start = start;
+    this->end = end;
+    return *this;
+}
+
+bool Number::addition_overflow(int a, int b) {
+    int overflow;
+    int max = 2147483647;
+    if (a^b < 0) 
+        overflow=0; /* opposite signs can't overflow */
+    else if (a>0) 
+        overflow=(b>max-a);
+    else 
+        overflow=(b<max-a);
+    return overflow;
+}
+
+Number Number::added_to(Number other) {
+    //check if either number is bigger than 2^31-1
+    if (isBig() || other.isBig()) {
+        cout << "Number too big: TODO handle big numbers." << endl;
+        return Number("0", 0);
+    }
+    int num1 = make_int();
+    int num2 = other.make_int();
+    //check if adding the two numbers would be bigger than 2^31-1
+    if (addition_overflow(num1, num2)) {
+        cout << "The two numbers added together are too big: TODO handle big numbers." << endl;
+        return Number("0", 0);
+    }
+    return Number(to_string(num1 + num2), 0);
+}

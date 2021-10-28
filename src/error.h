@@ -25,7 +25,7 @@ public:
      *  @param text Full text of line
      */
     explicit 
-    Except(const std::string& msg, int err_num, int err_off, std::string f_name, std::string text, int ln_num = 0):
+    Except(const std::string& msg = "Error", int err_num = 0, int err_off = 0, std::string f_name = "Unknown Error", std::string text = "An Error Occured", int ln_num = 0):
         error_number(err_num),
         error_offset(err_off),
         error_message(msg),

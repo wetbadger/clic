@@ -9,6 +9,7 @@ CMakeFiles/kmir.dir/src/lexer.cpp.o: ../src/position.h
 CMakeFiles/kmir.dir/src/lexer.cpp.o: ../src/token.h
 
 CMakeFiles/kmir.dir/src/main.cpp.o: ../src/error.h
+CMakeFiles/kmir.dir/src/main.cpp.o: ../src/interpreter.h
 CMakeFiles/kmir.dir/src/main.cpp.o: ../src/lexer.h
 CMakeFiles/kmir.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/kmir.dir/src/main.cpp.o: ../src/nodes.h
