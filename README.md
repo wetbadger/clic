@@ -1,5 +1,7 @@
 # kmir
-#installation
-    mkdir build
-    cd build
-    make
+# installation
+
+    mkdir build\n
+    cd build\n
+    make\n
+    
