@@ -4,7 +4,9 @@
 You will need:
 
 git
+
 cmake
+
 g++
 
     mkdir build
