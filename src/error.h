@@ -1,6 +1,8 @@
 #include <exception>
 #include <iostream>
 
+using namespace std;
+
 //copy-pasted from:
 //https://riptutorial.com/cplusplus/example/23640/custom-exception
 
