@@ -13,9 +13,10 @@ string Result::record(Result result) {
 }
 
 Result Result::success(string) {
-
+    return Result();
 }
 
 Result Result::failure(string) {
+    return Result();
 
 }

@@ -2,6 +2,8 @@
 #define NUMBER_H
 
 #include <iostream>
+#include <string>
+
 using namespace std;
 
 //The Number class stores numbers as a string. 
