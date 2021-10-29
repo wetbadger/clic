@@ -14,7 +14,7 @@ class Lexer {
         string text;
         Position position;
         int token_position =-1;
-        char current_char;
+        char current_char = 0;
         bool end_of_line = false;
         vector<Token> tokens;
 
