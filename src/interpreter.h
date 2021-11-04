@@ -12,7 +12,7 @@ class Interpreter {
         string method_name;
     public:
         Interpreter();
-        string visit(Node*);
+        Number visit(Node*);
         void no_visit_method(Node*);
         Number visit_NumberNode(Node*);
         Number visit_BinaryOperationNode(Node*);

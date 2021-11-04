@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <cctype>
 
 using namespace std;
 
@@ -30,7 +31,9 @@ class Number {
         double string_to_float();
         Number set_position(int start, int end);
         Number added_to(Number other);
+        Number multiplied_by(Number other);
         bool addition_overflow(int, int);
+        bool multiplication_overflow(int, int);
 };
 
 #endif

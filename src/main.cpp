@@ -3,6 +3,7 @@
 #include "lexer.h"
 #include "parser.h"
 #include "interpreter.h"
+#include "number.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -58,7 +59,9 @@ int main () {
 
     //Run Program
     Interpreter *interpreter = new Interpreter();
-    interpreter->visit(ast);
+    Number number = interpreter->visit(ast);
+
+    cout << number.get_value() << endl;
     
     cout << print_token_list(lex) << endl; //outputs your string as a list of tokens and values
   } while (line != "end");

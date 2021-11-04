@@ -8,8 +8,11 @@ Result::~Result() {
 
 }
 
-string Result::record(Result result) {
-    return result.value;
+string Result::_register(Result result) {
+    //if (result.error) {
+
+    //} else {
+    return result.get_value();
 }
 
 Result Result::success(string) {
@@ -19,4 +22,8 @@ Result Result::success(string) {
 Result Result::failure(string) {
     return Result();
 
+}
+
+string Result::get_value() {
+    return value;
 }

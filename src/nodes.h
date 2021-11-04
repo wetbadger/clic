@@ -7,6 +7,8 @@ struct Node {
     Token token;
     struct Node* left;
     struct Node* right;
+    Token get_token();
+    void set_token(Token token);
 };
 
 class NumberNode : public Node {

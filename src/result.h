@@ -2,6 +2,7 @@
 #define NUMBER_H
 
 #include <iostream>
+#include <optional>
 #include "error.h"
 using namespace std;
 
@@ -13,9 +14,10 @@ private:
 public:
     Result();
     ~Result();
-    string record(Result);
+    string _register(Result);
     Result success(string);
     Result failure(string);
+    string get_value();
 };
 
 #endif
