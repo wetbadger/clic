@@ -1,0 +1,13 @@
+The group project is just going to be getting math to work on the command line.
+
+✓ Order of operations.
+✓ Addition
+✓ Multiplication
+Subtraction
+Division
+Exponents
+Parenthesis
+Errors
+Unary
+Float
+Big numbers

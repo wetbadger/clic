@@ -32,7 +32,10 @@ int Number::make_int() {
         return 0;
     } else {
         isInteger = true;
-        return stoi(value);
+        if (value != "")
+            return stoi(value);
+        else
+            return NULL;
     }
 }
 
@@ -94,6 +97,14 @@ bool Number::addition_overflow(int a, int b) {
     return overflow;
 }
 
+bool Number::multiplication_overflow(int a, int b) {
+    int x = a * b;
+    if (a != 0 && x / a != b) {
+        return false;
+    }
+    return true;
+}
+
 Number Number::added_to(Number other) {
     //check if either number is bigger than 2^31-1
     if (isBig() || other.isBig()) {
@@ -108,4 +119,18 @@ Number Number::added_to(Number other) {
         return Number("0", 0);
     }
     return Number(to_string(num1 + num2), 0);
+}
+
+Number Number::multiplied_by(Number other) {
+    if (isBig() || other.isBig()) {
+        cout << "Number too big: TODO handle big numbers." << endl;
+        return Number("0", 0);
+    }
+    int num1 = make_int();
+    int num2 = other.make_int();
+    if (addition_overflow(num1, num2)) {
+        cout << "The two numbers added together are too big: TODO handle big numbers." << endl;
+        return Number("0", 0);
+    }
+    return Number(to_string(num1 * num2), 0);
 }

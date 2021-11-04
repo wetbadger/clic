@@ -1,7 +1,8 @@
-#ifndef NUMBER_H
-#define NUMBER_H
+#ifndef RESULT_H
+#define RESULT_H
 
 #include <iostream>
+#include <optional>
 #include "error.h"
 using namespace std;
 
@@ -13,9 +14,10 @@ private:
 public:
     Result();
     ~Result();
-    string record(Result);
+    string _register(Result);
     Result success(string);
     Result failure(string);
+    string get_value();
 };
 
 #endif

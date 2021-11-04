@@ -1,0 +1,3 @@
+CLICK (Command Line Interface Calculator for Kmir)
+
+Documentation goes here.

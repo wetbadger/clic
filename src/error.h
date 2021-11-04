@@ -1,5 +1,9 @@
+#ifndef ERROR_H
+#define ERROR_H
+
 #include <exception>
 #include <iostream>
+#include "position.h"
 
 using namespace std;
 
@@ -77,3 +81,25 @@ public:
     }
 
 };
+//Exceptions
+static void too_many_dots_error(string num_string, Position position) {
+    string spaces = "";
+        for (int i = 0; i < num_string.length(); i++) {
+            spaces += " ";
+        }
+    try {
+        throw(Except("\nParseError: I was trying to parse a number, then I saw this \""+num_string+".\" and got confused.\n" + 
+                        "                                                             " + spaces +  "^", 1, position.get_column()+1, 
+                        position.get_file_name(), position.get_file_text()));
+    } catch (const Except& e) {
+        std::cout<<e.what()
+            <<"\n  Err "<<e.getErrorNumber()
+            <<" - Column: "<<e.getErrorOffset()
+            <<"\n  File name: "<<e.getFilename()
+            <<"\n  Line: "<<e.getLine()
+            <<": \""<<e.printLine()<<"\"\n"
+            <<endl;
+    }
+}
+
+#endif

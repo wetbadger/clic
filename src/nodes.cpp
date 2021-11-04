@@ -11,3 +11,11 @@ BinaryOperationNode::BinaryOperationNode(Token token, Node* left, Node* right) {
     this->left = left;
     this->right = right;
 }
+
+Token Node::get_token() {
+    return this->token;
+}
+
+void Node::set_token(Token token) {
+    this->token = token;
+}
