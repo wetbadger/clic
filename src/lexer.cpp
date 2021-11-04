@@ -116,25 +116,9 @@ Number Lexer::make_number() {
         if (current_char == '.') {
             if (dot_count > 0) {
                 //error here. (number has 2 dots)
-                string spaces = "";
-                for (int i = 0; i < num_string.length(); i++) {
-                    spaces += " ";
-                }
                 Position p_copy = position.copy();
-                try {
-                    throw(Except("\n    ParseError: I was trying to parse a number, then I saw this \""+num_string+".\" and got confused.\n" + 
-                                 "                                                                 " + spaces +  "^", 1, p_copy.get_column()+1, 
-                                 p_copy.get_file_name(), p_copy.get_file_text()));
-                } catch (const Except& e) {
-                    std::cout<<e.what()
-                        <<"\n  Err "<<e.getErrorNumber()
-                        <<" - Column: "<<e.getErrorOffset()
-                        <<"\n  File name: "<<e.getFilename()
-                        <<"\n  Line: "<<e.getLine()
-                        <<": \""<<e.printLine()<<"\"\n"
-                        <<endl;
-                }
-                num_string = "corrupt";
+                too_many_dots_error(num_string, p_copy);
+                num_string = "";
                 break; 
             }
             dot_count += 1;

@@ -1,3 +1,6 @@
+#ifndef LEXER_H
+#define LEXER_H
+
 #include "token.h"
 #include "number.h"
 #include "error.h"
@@ -32,3 +35,5 @@ class Lexer {
         
         vector<Token> get_tokens();
 };
+
+#endif

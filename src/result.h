@@ -1,5 +1,5 @@
-#ifndef NUMBER_H
-#define NUMBER_H
+#ifndef RESULT_H
+#define RESULT_H
 
 #include <iostream>
 #include <optional>

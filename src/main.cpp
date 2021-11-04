@@ -45,7 +45,7 @@ string print_token_list(Lexer* lex) {
 int main () {
   string line;
   
-  cout << "KMIR VERSION 0.0" << endl;
+  cout << "CLICK VERSION 0.0" << endl;
   do {
     cout << "kmir > ";
     getline(cin, line);
