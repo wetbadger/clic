@@ -1,4 +1,4 @@
-This is currently only an idea for Kmir. The actual implementation is subject to change.
+This is currently only an idea for a programming language. The actual implementation is subject to change.
 
 Kmir is a simple educational interpreted programming language, where everything is a list! The language features: Extremely Weak Typing, line breaks to indicate new line rather than semicolons, and humorous error messages.
 
