@@ -45,9 +45,9 @@ string print_token_list(Lexer* lex) {
 int main () {
   string line;
   
-  cout << "CLICK VERSION 0.0" << endl;
+  cout << "CLIC VERSION 0.0" << endl;
   do {
-    cout << "kmir > ";
+    cout << "clic > ";
     getline(cin, line);
     Lexer *lex = new Lexer("shell", line);
     //generate tokens

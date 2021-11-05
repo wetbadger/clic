@@ -1,0 +1,14 @@
+Topics to talk about in the presentation:
+
+Why use separate header files?
+What is linking?
+What is cmake?
+
+What does the lexer do?
+What does the parser do?
+What does the interpreter do?
+
+What is an abstract syntax tree?
+What is the difference between an expression, a term, and a factor?
+
+What are the algorithms that allow arithmatic with very large numbers?
