@@ -1,6 +1,6 @@
 Topics to talk about in the presentation:
 
-Why use separate header files?
+Why use separate header files? https://stackoverflow.com/questions/1305947/why-does-c-need-a-separate-header-file
 What is linking?
 What is cmake?
 
