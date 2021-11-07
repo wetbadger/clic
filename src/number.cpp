@@ -121,6 +121,23 @@ Number Number::added_to(Number other) {
     return Number(to_string(num1 + num2), 0);
 }
 
+Number Number::subtracted_from(Number other) {
+    //check if either number is bigger than 2^31-1
+    if (isBig() || other.isBig()) {
+        cout << "Number too big: TODO handle big numbers." << endl;
+        return Number("0", 0);
+    }
+    int num1 = make_int();
+    int num2 = other.make_int();
+    //check if adding the two numbers would be bigger than 2^31-1
+    if (addition_overflow(num1, num2)) {
+        cout << "The two numbers added together are too big: TODO handle big numbers." << endl;
+        return Number("0", 0);
+    }
+    return Number(to_string(num1 - num2), 0);
+}
+
+
 Number Number::multiplied_by(Number other) {
     if (isBig() || other.isBig()) {
         cout << "Number too big: TODO handle big numbers." << endl;

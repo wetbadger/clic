@@ -45,6 +45,7 @@ Number Interpreter::visit_BinaryOperationNode(Node* node) {
         case TT_PLUS:
             return num1.added_to(num2);
         case TT_MINUS:
+            return num1.subtracted_from(num2);
         case TT_MUL:
             return num1.multiplied_by(num2);
         case TT_DIV:
