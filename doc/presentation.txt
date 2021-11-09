@@ -4,8 +4,8 @@ Why use separate header files?
 What is linking?
 What is cmake?
 
-What does the lexer do?
-What does the parser do?
+What does the lexer do?    --> MTA: Reads the line
+What does the parser do?   --> MTA: tells program what the file is
 What does the interpreter do?
 
 What is an abstract syntax tree?
