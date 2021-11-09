@@ -67,5 +67,3 @@ int main () {
   } while (line != "end");
   return 0;
 }
-
-//Natalia test

@@ -30,6 +30,20 @@ Node* Parser::factor() {
     if (token.get_type() == TT_INT || token.get_type() == TT_FLOAT) {
         advance();
     }
+    /* if (token.get_type() == TT_PLUS || token.get_type() == TT_MINUS) {
+        advance();
+        this->left.set_token(current_token);
+        return new UnaryNode(token, left);
+    } 
+    if (token.get_type() == TT_LPAREN) {
+        advance();
+        expression();
+        if (current_token.get_type() == TT_RPAREN) {
+            advance();
+            return expression();
+        }
+    }
+    */
     return new NumberNode(token);
 }
 

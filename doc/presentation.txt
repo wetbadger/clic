@@ -8,7 +8,7 @@ What does the lexer do?
 What does the parser do?
 What does the interpreter do?
 
-What is an abstract syntax tree?
-What is the difference between an expression, a term, and a factor?
+What is an abstract syntax tree? (Ben)
+What is the difference between an expression, a term, and a factor? (Ben)
 
 What are the algorithms that allow arithmatic with very large numbers?

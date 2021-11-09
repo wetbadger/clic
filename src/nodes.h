@@ -21,13 +21,9 @@ class BinaryOperationNode : public Node {
         BinaryOperationNode(Token key, Node* left, Node* right);
 };
 
-/*
-class Tree {
-    void insert(Token key); //insert a node
-    Node *search(Token key); //search a value
-    void print(); //print the tree
-    Node *root; //pointer to a root element
+class UnaryNode : public Node {
+    public:
+        UnaryNode(Token unary, Node* node);
 };
-*/
 
 #endif
