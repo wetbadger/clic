@@ -16,8 +16,7 @@ class Number {
         string value;
         int dot_count;
         bool isInteger;
-        int start;
-        int end;
+
     public:
         Number();
         Number(string num_string, int dot_count);
@@ -29,8 +28,9 @@ class Number {
         bool isInt();
         bool isBig();
         double string_to_float();
-        Number set_position(int start, int end);
+
         Number added_to(Number other);
+        Number subtracted_from(Number other);
         Number multiplied_by(Number other);
         bool addition_overflow(int, int);
         bool multiplication_overflow(int, int);

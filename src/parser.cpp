@@ -30,6 +30,20 @@ Node* Parser::factor() {
     if (token.get_type() == TT_INT || token.get_type() == TT_FLOAT) {
         advance();
     }
+    if (token.get_type() == TT_PLUS || token.get_type() == TT_MINUS) {
+        advance();
+        Node* fctr = factor();
+        return new UnaryNode(token, fctr);
+    } 
+
+    if (token.get_type() == TT_LPAREN) {
+        advance();
+        Node* expr = expression();
+        if (current_token.get_type() == TT_RPAREN) {
+            advance();
+            return expr;
+        } //parenthesis error caught by lexer
+    }
     return new NumberNode(token);
 }
 
@@ -43,7 +57,7 @@ Node* Parser::expression() {
     return binary_operation([this]() { return term(); }, operations);
 }
 
-Node* Parser::binary_operation(std::function<Node* ()> func, vector<TT> operations) {
+Node* Parser::binary_operation(function<Node* ()> func, vector<TT> operations) {
     Node* left = func();
     Token root_token;
 

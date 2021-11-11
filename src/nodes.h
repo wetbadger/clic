@@ -2,11 +2,14 @@
 #define NODES_H
 
 #include "token.h"
+#include "number.h"
  
 struct Node {
     Token token;
     struct Node* left;
     struct Node* right;
+    Node();
+    Node(Token);
     Token get_token();
     void set_token(Token token);
 };
@@ -21,13 +24,9 @@ class BinaryOperationNode : public Node {
         BinaryOperationNode(Token key, Node* left, Node* right);
 };
 
-/*
-class Tree {
-    void insert(Token key); //insert a node
-    Node *search(Token key); //search a value
-    void print(); //print the tree
-    Node *root; //pointer to a root element
+class UnaryNode : public Node {
+    public:
+        UnaryNode(Token unary, Node* node);
 };
-*/
 
 #endif

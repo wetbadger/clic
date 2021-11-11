@@ -1,6 +1,6 @@
 Topics to talk about in the presentation:
 
-Why use separate header files?
+Why use separate header files? https://stackoverflow.com/questions/1305947/why-does-c-need-a-separate-header-file
 What is linking?
 What is cmake?
 
@@ -8,7 +8,7 @@ What does the lexer do?    --> MTA: Reads the line
 What does the parser do?   --> MTA: tells program what the file is
 What does the interpreter do?
 
-What is an abstract syntax tree?
-What is the difference between an expression, a term, and a factor?
+What is an abstract syntax tree? (Ben)
+What is the difference between an expression, a term, and a factor? (Ben)
 
 What are the algorithms that allow arithmatic with very large numbers?

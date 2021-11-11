@@ -1,3 +1,6 @@
+#ifndef INTERPRETER_H
+#define INTERPRETER_H
+
 #include <iostream>
 #include <algorithm>
 #include <vector>
@@ -16,5 +19,7 @@ class Interpreter {
         void no_visit_method(Node*);
         Number visit_NumberNode(Node*);
         Number visit_BinaryOperationNode(Node*);
-        void visit_UnaryNode(Node*);
+        Number visit_UnaryNode(Node*);
 };
+
+#endif

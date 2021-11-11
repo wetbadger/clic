@@ -9,15 +9,20 @@ Number Interpreter::visit(Node* node) {
     vector<TT> operations = {TT_PLUS, TT_MINUS, TT_MUL, TT_DIV};
     vector<TT> numbers = {TT_INT, TT_FLOAT};
     Number n;
-    if (count(operations.begin(), operations.end(), node->token.get_type())) {
-        n = visit_BinaryOperationNode(node);
-        Token new_number = Token();
-        new_number.set(TT_INT);
-        new_number.set_value(n.get_value());
-        node->set_token(new_number);
+    Token token = node->token;
+    if (count(operations.begin(), operations.end(), token.get_type())) {
+        if (node->right->get_token().get_type() != TT_UNARY) {
+            n = visit_BinaryOperationNode(node);
+            Token new_number = Token();
+            new_number.set(TT_INT);
+            new_number.set_value(n.get_value());
+            node->set_token(new_number);
+        } else {
+            n = visit_UnaryNode(node);
+        }
         return n;
     }
-    if (count(numbers.begin(), numbers.end(), node->token.get_type())) {
+    if (count(numbers.begin(), numbers.end(), token.get_type())) {
         n = visit_NumberNode(node);
         return n;
     }
@@ -37,14 +42,13 @@ Number Interpreter::visit_BinaryOperationNode(Node* node) {
 
     Number num1, num2;
     num1 = Number(node->left->get_token().get_value(), 0);
-    Token t1 = node->left->token;
     num2 = Number(node->right->get_token().get_value(), 0);
-    Token t2 = node->right->token;
     
     switch (node->token.get_type()) {
         case TT_PLUS:
             return num1.added_to(num2);
         case TT_MINUS:
+            return num1.subtracted_from(num2);
         case TT_MUL:
             return num1.multiplied_by(num2);
         case TT_DIV:
@@ -52,6 +56,17 @@ Number Interpreter::visit_BinaryOperationNode(Node* node) {
             cout << "Operator not given functionality yet. TODO: add error here." << endl;
     }
 }
-void Interpreter::visit_UnaryNode(Node* node) {
-    cout << "Found UnaryNode" << endl;
+Number Interpreter::visit_UnaryNode(Node* node) {
+    //cout << "Found UnaryNode" << endl;
+    Number n = visit(node->left);
+
+    if (node->get_token().get_type() == TT_MINUS) {
+        n = n.multiplied_by(Number("-1", 0));
+        Token new_number = Token();
+        new_number.set(TT_INT);
+        new_number.set_value(n.get_value());
+        node->set_token(new_number);
+    }
+
+    return n;
 }
