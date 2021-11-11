@@ -73,11 +73,16 @@ void Lexer::make_tokens() {
             case '(':
             {
                 t.set(TT_LPAREN);
+                p_stack.push(')');
                 break;
             }
             case ')':
             {
                 t.set(TT_RPAREN);
+                if (p_stack.size() == 0) {
+                    left_parenthesis_error(position);
+                }
+                p_stack.pop();
                 break;
             }
             case '[':
@@ -98,6 +103,9 @@ void Lexer::make_tokens() {
         tokens.push_back(t);
         token_position++;
         advance();
+    }
+    if (p_stack.size() != 0) {
+        right_parenthesis_error(position);
     }
 }
 

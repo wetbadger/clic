@@ -79,12 +79,6 @@ double Number::string_to_float() {
     return d;
 }
 
-Number Number::set_position(int start = NULL, int end = NULL) {
-    this->start = start;
-    this->end = end;
-    return *this;
-}
-
 bool Number::addition_overflow(int a, int b) {
     int overflow;
     int max = 2147483647;

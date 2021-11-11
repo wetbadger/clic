@@ -5,6 +5,11 @@ Token::Token() {
     
 }
 
+Token::Token(TT type, string value) {
+    set_type(type);
+    set_value(value);
+}
+
 void Token::set(TT tt) {
     type = tt;
 }
@@ -53,11 +58,6 @@ void Token::set_value(bool value) {
 void Token::set_value(string value) {
     this->value = value;
 }
-/*
-void Token::set_value(void* value) {
-    this->value = value;
-}
-*/
 int Token::get_int_value() {
     return int_value;
 }

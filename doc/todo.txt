@@ -3,12 +3,12 @@ The group project is just going to be getting math to work on the command line.
 ✓ Order of operations.
 ✓ Addition
 ✓ Multiplication
-Subtraction
+✓ Subtraction
 Division
 Exponents
-Parenthesis
+✓ Parenthesis
 Errors
-Unary
+✓ Unary
 Float
 Variables
 Modulus
