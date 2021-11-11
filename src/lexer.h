@@ -9,6 +9,7 @@
 #include <vector>
 #include <cctype>
 #include <string>
+#include <stack>
 
 using namespace std;
 
@@ -26,6 +27,8 @@ class Lexer {
         Number make_number();
         int make_int(string);
         int get_dot_count(string);
+
+        stack<char> p_stack;
 
     public:
         Lexer(string file_name, string file_text);

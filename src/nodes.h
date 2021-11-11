@@ -2,11 +2,14 @@
 #define NODES_H
 
 #include "token.h"
+#include "number.h"
  
 struct Node {
     Token token;
     struct Node* left;
     struct Node* right;
+    Node();
+    Node(Token);
     Token get_token();
     void set_token(Token token);
 };

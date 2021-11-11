@@ -17,21 +17,14 @@ protected:
     int error_number;               ///< Error number
     int error_offset;               ///< Error offset
     int line_number;
-    std::string error_message;      ///< Error message
-    std::string file_name;
-    std::string file_text;
+    string error_message;      ///< Error message
+    string file_name;
+    string file_text;
     
 public:
 
-    /** Constructor (C++ STL string, int, int).
-     *  @param msg The error message
-     *  @param err_num Error number
-     *  @param err_off Error offset
-     *  @param file_name Filename or shell
-     *  @param text Full text of line
-     */
     explicit 
-    Except(const std::string& msg = "Error", int err_num = 0, int err_off = 0, std::string f_name = "Unknown Error", std::string text = "An Error Occured", int ln_num = 0):
+    Except(const string& msg = "Error", int err_num = 0, int err_off = 0, string f_name = "Unknown Error", string text = "An Error Occured", int ln_num = 0):
         error_number(err_num),
         error_offset(err_off),
         error_message(msg),
@@ -96,10 +89,45 @@ static void too_many_dots_error(string num_string, Position position) {
             <<"\n  Err "<<e.getErrorNumber()
             <<" - Column: "<<e.getErrorOffset()
             <<"\n  File name: "<<e.getFilename()
-            <<"\n  Line: "<<e.getLine()
+            <<"\n  Line "<<e.getLine()
             <<": \""<<e.printLine()<<"\"\n"
             <<endl;
     }
 }
+
+static void right_parenthesis_error(Position position) {
+
+    try {
+        throw(Except("\nParseError: Expected a right parenthesis somewhere.\n", 
+                        2, position.get_column()+1, 
+                        position.get_file_name(), position.get_file_text()));
+    } catch (const Except& e) {
+        std::cout<<e.what()
+            <<"\n  Err "<<e.getErrorNumber()
+            <<" - Column: "<<e.getErrorOffset()
+            <<"\n  File name: "<<e.getFilename()
+            <<"\n  Line "<<e.getLine()
+            <<": \""<<e.printLine()<<"\"\n"
+            <<endl;
+    }
+}
+
+static void left_parenthesis_error(Position position) {
+
+    try {
+        throw(Except("\nParseError: Expected a left parenthesis somewhere.\n", 
+                        3, position.get_column()+1, 
+                        position.get_file_name(), position.get_file_text()));
+    } catch (const Except& e) {
+        std::cout<<e.what()
+            <<"\n  Err "<<e.getErrorNumber()
+            <<" - Column: "<<e.getErrorOffset()
+            <<"\n  File name: "<<e.getFilename()
+            <<"\n  Line "<<e.getLine()
+            <<": \""<<e.printLine()<<"\"\n"
+            <<endl;
+    }
+}
+
 
 #endif

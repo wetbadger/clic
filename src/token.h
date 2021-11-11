@@ -17,6 +17,7 @@ enum TT {
     TT_POW,
     TT_INT,
     TT_FLOAT,
+    TT_UNARY,
     TT_LPAREN,
     TT_RPAREN,
     //array stuff
@@ -38,6 +39,7 @@ class Token {
         //T value; //Using generics like this turned out to be a nightmare
     public:
         Token();
+        Token(TT, string);
         void set(TT);
         void set_value(int);
         void set_value(bool);
