@@ -51,7 +51,8 @@ Number Interpreter::visit_BinaryOperationNode(Node* node) {
             return num1.subtracted_from(num2);
         case TT_MUL:
             return num1.multiplied_by(num2);
-        case TT_DIV:
+        case TT_DIV:        case TT_POW:
+            return num1.power_of(num2);
         default:
             cout << "Operator not given functionality yet. TODO: add error here." << endl;
     }

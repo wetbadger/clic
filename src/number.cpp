@@ -141,3 +141,15 @@ Number Number::multiplied_by(Number other) {
     }
     return Number(to_string(num1 * num2), 0);
 }
+
+Number Number::power_of(Number other) {
+    int num1 = make_int();
+    int num2 = other.make_int();
+    if (multiplication_overflow(num1, num2)) {
+        cout << "The numbers are too big: TODO handle big numbers." << endl;
+        return Number("0", 0);
+    }
+
+    return Number(to_string(pow(num1, num2)), 0);
+
+}
