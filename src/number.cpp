@@ -150,6 +150,6 @@ Number Number::power_of(Number other) {
         return Number("0", 0);
     }
 
-    return Number(to_string(pow(num1, num2)), 0);
+    return Number(to_string(static_cast<int>(pow(num1, num2))), 0);
 
 }

@@ -25,17 +25,12 @@ Node* Parser::parse() {
     return expression();
 }
 
-Node* Parser::factor() {
+Node* Parser::atom() {
     Token token = current_token;
+
     if (token.get_type() == TT_INT || token.get_type() == TT_FLOAT) {
         advance();
     }
-    if (token.get_type() == TT_PLUS || token.get_type() == TT_MINUS) {
-        advance();
-        Node* fctr = factor();
-        return new UnaryNode(token, fctr);
-    } 
-
     if (token.get_type() == TT_LPAREN) {
         advance();
         Node* expr = expression();
@@ -45,6 +40,24 @@ Node* Parser::factor() {
         } //parenthesis error caught by lexer
     }
     return new NumberNode(token);
+}
+
+Node* Parser::power() {
+    vector<TT> operations;
+    operations.push_back(TT_POW);
+    return binary_operation([this]() { return atom(); }, operations);
+}
+
+Node* Parser::factor() {
+    Token token = current_token;
+    
+    if (token.get_type() == TT_PLUS || token.get_type() == TT_MINUS) {
+        advance();
+        Node* fctr = factor();
+        return new UnaryNode(token, fctr);
+    } 
+
+    return power();
 }
 
 Node* Parser::term() {

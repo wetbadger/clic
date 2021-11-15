@@ -17,6 +17,8 @@ class Parser {
         Parser(vector<Token> tokens);
         void advance();
         Node* parse();
+        Node* atom();
+        Node* power();
         Node* factor();
         Node* term();
         Node* expression();
