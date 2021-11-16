@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <cctype>
+#include <math.h>
 
 using namespace std;
 
@@ -32,6 +33,7 @@ class Number {
         Number added_to(Number other);
         Number subtracted_from(Number other);
         Number multiplied_by(Number other);
+        Number power_of(Number other);
         bool addition_overflow(int, int);
         bool multiplication_overflow(int, int);
 };
