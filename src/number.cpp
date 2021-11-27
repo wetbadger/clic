@@ -25,6 +25,18 @@ int Number:: get_dot_count() {
     return dot_count;
 }
 
+double Number::make_float() {
+    isInteger = false;
+    if (isBigFloat()) {
+        return 0.0;
+    } else {
+        if (value != "")
+            return value_to_float();
+        else
+            return NULL;
+    }
+}
+
 int Number::make_int() {
 
     if (isBig()) {
@@ -60,11 +72,21 @@ bool Number::isBig() {
     return false;
 }
 
-double Number::string_to_float() {
+bool Number::isBigFloat() {
+    return false;
+}
+
+double Number::value_to_float() {
     double d = 0;
+    int sign = 1; // -1 for negatives
+    int start = 0;
     bool f = false; //when true, numbers are after the dot
     int p = 1; //count digits after dot
-    for (int i = 0; i < value.size(); i++) {
+    if (value.at(0) == '-') {
+        sign = -1;
+        start = 1; //start at index 1
+    }
+    for (int i = start; i < value.size(); i++) {
         if (value.at(i) == '.') {
             f = true;
             continue;
@@ -76,7 +98,10 @@ double Number::string_to_float() {
             p*=10;
         }
     }
-    return d;
+    if (sign == -1)
+        return d * -1;
+    else
+        return d;
 }
 
 bool Number::addition_overflow(int a, int b) {
@@ -105,14 +130,21 @@ Number Number::added_to(Number other) {
         cout << "Number too big: TODO handle big numbers." << endl;
         return Number("0", 0);
     }
-    int num1 = make_int();
-    int num2 = other.make_int();
-    //check if adding the two numbers would be bigger than 2^31-1
-    if (addition_overflow(num1, num2)) {
-        cout << "The two numbers added together are too big: TODO handle big numbers." << endl;
-        return Number("0", 0);
+    if (dot_count ==  0 || other.dot_count == 0) {
+        int num1 = make_int();
+        int num2 = other.make_int();
+        //check if adding the two numbers would be bigger than 2^31-1
+        if (addition_overflow(num1, num2)) {
+            cout << "The two numbers added together are too big: TODO handle big numbers." << endl;
+            return Number("0", 0);
+        }
+        return Number(to_string(num1 + num2), 0);
+    } else {
+        double num1 = make_float();
+        double num2 = other.make_float();
+        //check if adding the two numbers would be bigger than 2^31-1
+        return Number(to_string(num1 + num2), 1);
     }
-    return Number(to_string(num1 + num2), 0);
 }
 
 Number Number::subtracted_from(Number other) {
@@ -121,35 +153,60 @@ Number Number::subtracted_from(Number other) {
         cout << "Number too big: TODO handle big numbers." << endl;
         return Number("0", 0);
     }
-    int num1 = make_int();
-    int num2 = other.make_int();
-    //check if adding the two numbers would be bigger than 2^31-1
-    if (addition_overflow(num1, num2)) {
-        cout << "The two numbers added together are too big: TODO handle big numbers." << endl;
-        return Number("0", 0);
+    if (dot_count ==  0 || other.dot_count == 0) {
+        int num1 = make_int();
+        int num2 = other.make_int();
+        //check if adding the two numbers would be bigger than 2^31-1
+        if (addition_overflow(num1, num2)) {
+            cout << "The two numbers added together are too big: TODO handle big numbers." << endl;
+            return Number("0", 0);
+        }
+        return Number(to_string(num1 - num2), 0);
+    } else {
+        double num1 = make_float();
+        double num2 = other.make_float();
+        //TODO: check if numbers overflow
+        return Number(to_string(num1 - num2), 1);
     }
-    return Number(to_string(num1 - num2), 0);
+    
 }
 
 
 Number Number::multiplied_by(Number other) {
-    int num1 = make_int();
-    int num2 = other.make_int();
-    if (multiplication_overflow(num1, num2)) {
-        cout << "The two numbers multiplied together are too big: TODO handle big numbers." << endl;
-        return Number("0", 0);
+    if (dot_count ==  0 || other.dot_count == 0) {
+        int num1 = make_int();
+        int num2 = other.make_int();
+        if (multiplication_overflow(num1, num2)) {
+            cout << "The two numbers multiplied together are too big: TODO handle big numbers." << endl;
+            return Number("0", 0);
+        }
+        return Number(to_string(num1 * num2), 0);
+    } else {
+        double num1 = make_float();
+        double num2 = other.make_float();
+        return Number(to_string(num1 * num2), 1);
     }
-    return Number(to_string(num1 * num2), 0);
+}
+
+Number Number::divided_by(Number other) {
+    double num1 = make_float();
+    double num2 = other.make_float();
+    return Number(to_string(num1 / num2), 1);
 }
 
 Number Number::power_of(Number other) {
-    int num1 = make_int();
-    int num2 = other.make_int();
-    if (multiplication_overflow(num1, num2)) {
-        cout << "The numbers are too big: TODO handle big numbers." << endl;
-        return Number("0", 0);
+    if ((dot_count ==  0 || other.dot_count == 0) && other.get_value().at(0) != '-') {
+        int num1 = make_int();
+        int num2 = other.make_int();
+        if (multiplication_overflow(num1, num2)) {
+            cout << "The numbers are too big: TODO handle big numbers." << endl;
+            return Number("0", 0);
+        }
+        return Number(to_string(static_cast<int>(pow(num1, num2))), 0);
+    } else {
+        float num1 = make_float();
+        float num2 = other.make_float();
+        return Number(to_string(static_cast<double>(pow(num1, num2))), 1);
     }
-
-    return Number(to_string(static_cast<int>(pow(num1, num2))), 0);
 
 }

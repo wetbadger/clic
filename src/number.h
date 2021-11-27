@@ -26,13 +26,16 @@ class Number {
         string get_value();
         int get_dot_count();
         int make_int();
+        double make_float();
         bool isInt();
         bool isBig();
-        double string_to_float();
+        bool isBigFloat();
+        double value_to_float();
 
         Number added_to(Number other);
         Number subtracted_from(Number other);
         Number multiplied_by(Number other);
+        Number divided_by(Number other);
         Number power_of(Number other);
         bool addition_overflow(int, int);
         bool multiplication_overflow(int, int);

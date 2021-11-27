@@ -11,8 +11,6 @@
 using namespace std;
 
 class Interpreter {
-    private:
-        string method_name;
     public:
         Interpreter();
         Number visit(Node*);
