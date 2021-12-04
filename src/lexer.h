@@ -25,6 +25,7 @@ class Lexer {
         double string_to_float(string);
         bool isBig(string);
         Number make_number();
+        string make_a_word();
         int make_int(string);
         int get_dot_count(string);
 

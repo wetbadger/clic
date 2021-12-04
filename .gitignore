@@ -2,3 +2,5 @@ oldvscode
 build
 .vs
 .vscode
+doc/pg_documentation.txt
+doc/presentation.txt

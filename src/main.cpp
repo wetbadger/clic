@@ -44,6 +44,11 @@ string print_token_list(Lexer* lex) {
 
 int main () {
   string line;
+  Context context = Context();
+  //global symbols
+  context.symbols.set("null", Token(TT_NULL, "null"));
+  context.symbols.set("end", Token(TT_RES, "end"));
+  context.symbols.set("end", Token(TT_RES, "ans"));
   
   cout << "CLIC VERSION 0.0" << endl;
   do {
@@ -54,16 +59,16 @@ int main () {
     lex->make_tokens();
 
     //generate Abstract Syntax Tree
-    Parser *parser = new Parser(lex->get_tokens());
+    Parser *parser = new Parser(lex->get_tokens(), context.symbols.get_symbols());
     Node* ast = parser->parse();
 
     //Run Program
     Interpreter *interpreter = new Interpreter();
-    Number number = interpreter->visit(ast);
+    Token result = interpreter->visit(ast, context);
 
-    cout << number.get_value() << endl;
+    cout << result.get_value() << endl;
     
-    cout << print_token_list(lex) << endl; //outputs your string as a list of tokens and values
+    //cout << print_token_list(lex) << endl; //outputs your string as a list of tokens and values
   } while (line != "end");
   return 0;
 }

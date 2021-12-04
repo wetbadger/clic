@@ -5,11 +5,11 @@ The group project is just going to be getting math to work on the command line.
 ✓ Multiplication
 ✓ Subtraction
 Division
-Exponents
+✓ Exponents
 ✓ Parenthesis
 Errors
 ✓ Unary
-Float
+✓ Float
 Variables
 Modulus
 Big numbers

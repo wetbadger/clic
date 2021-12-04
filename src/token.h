@@ -3,12 +3,17 @@
 
 #include <iostream>
 #include <string>
+#include "number.h"
 
 using namespace std;
 
 enum TT {
     TT_END,
     TT_BOOL,
+    TT_WORD,
+    TT_ASSIGN,
+    TT_ERR,
+    TT_RES, //reserved words
     //math stuff
     TT_PLUS, 
     TT_MINUS,
@@ -36,14 +41,15 @@ class Token {
         int int_value;
         bool bool_value;
         string value; //store actual value as a string whether int, char or whatever
-        //T value; //Using generics like this turned out to be a nightmare
     public:
         Token();
         Token(TT, string);
+        Token(Number);
         void set(TT);
         void set_value(int);
         void set_value(bool);
         void set_value(string);
+        void set_value(Token*);
         //void set_value(void*);
         int get_int_value(); 
         bool get_bool_value();
@@ -53,25 +59,6 @@ class Token {
         TT get_type();
         virtual string get_name();
         virtual string to_string();
-};
-
-//token2 allows programmer to tokenize generic values
-template <typename T> class Token2 : public Token {     
-    private:
-        T value; 
-        string name = "Token2";
-    public:
-        void set_value(T value) {
-            this->value = value;
-            cout << value << endl;
-        } 
-        void get_value() const {
-            return value;
-        }
-        virtual string get_name() {
-            return "Token2";
-        }
-
 };
 
 #endif

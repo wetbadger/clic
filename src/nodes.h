@@ -29,4 +29,14 @@ class UnaryNode : public Node {
         UnaryNode(Token unary, Node* node);
 };
 
+class VariableAccessNode : public Node {
+    public:
+        VariableAccessNode(Token var_name);
+};
+
+class AssignmentNode : public Node {
+    public:
+        AssignmentNode(string, Node*);
+};
+
 #endif

@@ -10,6 +10,14 @@ Token::Token(TT type, string value) {
     set_value(value);
 }
 
+Token::Token(Number n) {
+    if (n.get_dot_count() == 0)
+        set_type(TT_INT);
+    else
+        set_type(TT_FLOAT);
+    set_value(n.get_value());
+}
+
 void Token::set(TT tt) {
     type = tt;
 }
@@ -42,6 +50,10 @@ string Token::to_string() {
             return "float:" + value;
         case TT_BOOL:
             return "bool:" + std::to_string(bool_value);
+        case TT_WORD:
+            return "a word";
+        case TT_ASSIGN:
+            return "assign";
         case TT_NULL:
             return "null";
     }
