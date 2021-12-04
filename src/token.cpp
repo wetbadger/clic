@@ -10,6 +10,14 @@ Token::Token(TT type, string value) {
     set_value(value);
 }
 
+Token::Token(Number n) {
+    if (n.get_dot_count() == 0)
+        set_type(TT_INT);
+    else
+        set_type(TT_FLOAT);
+    set_value(n.get_value());
+}
+
 void Token::set(TT tt) {
     type = tt;
 }

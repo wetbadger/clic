@@ -39,6 +39,7 @@ VariableAccessNode::VariableAccessNode(Token word) {
 }
 
 AssignmentNode::AssignmentNode(string word, Node* value) {
+    this->token = Token(TT_ASSIGN, "=");
     this->left = new Node(Token(TT_WORD, word));
     this->right = value;
 }

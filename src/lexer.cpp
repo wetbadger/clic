@@ -161,29 +161,17 @@ vector<Token> Lexer::get_tokens() {
 }
 
 string Lexer::make_a_word() {
-    //Token number;
     string word_string = "";
-
-
     while (current_char != ' '
         && isalnum(current_char)) {
-
-        // 12/02/2021  
+        if (end_of_line) {
+            break;
+        }
         word_string.push_back(current_char);
-
-
         if (end_of_line) {
             break;
         }     
-
-
-
-
-        advance();
-
-
-
-       
+        advance(); 
     }
     return word_string;
 }

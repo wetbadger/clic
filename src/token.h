@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "number.h"
 
 using namespace std;
 
@@ -39,10 +40,10 @@ class Token {
         int int_value;
         bool bool_value;
         string value; //store actual value as a string whether int, char or whatever
-        Token* token_pointer;
     public:
         Token();
         Token(TT, string);
+        Token(Number);
         void set(TT);
         void set_value(int);
         void set_value(bool);
@@ -57,25 +58,6 @@ class Token {
         TT get_type();
         virtual string get_name();
         virtual string to_string();
-};
-
-//token2 allows programmer to tokenize generic values
-template <typename T> class Token2 : public Token {     
-    private:
-        T value; 
-        string name = "Token2";
-    public:
-        void set_value(T value) {
-            this->value = value;
-            cout << value << endl;
-        } 
-        void get_value() const {
-            return value;
-        }
-        virtual string get_name() {
-            return "Token2";
-        }
-
 };
 
 #endif

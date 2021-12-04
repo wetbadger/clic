@@ -2,20 +2,30 @@
 
 
 
-Parser::Parser(vector<Token> tokens) {
+Parser::Parser(vector<Token> tokens, map<string, Token> symbols) {
     this->tokens = tokens;
     token_index = 0;
     current_token = tokens[token_index];
+    this->symbols = symbols;
     advance();
 }
 
 void Parser::advance() {
-    token_index += 1;
+    token_index ++;
     if (token_index < tokens.size()) {
         current_token = tokens[token_index];
     } else {
         current_token.set_type(TT_END);
     }
+}
+
+Token Parser::peek() {
+    Token t;
+    if (token_index+1 < tokens.size())
+        t = tokens[token_index+1];
+    else
+        t = Token(TT_NULL, "null");
+    return t;
 }
 
 Node* Parser::parse() {
@@ -36,7 +46,9 @@ Node* Parser::atom() {
 
     if (token.get_type() == TT_INT || token.get_type() == TT_FLOAT) {
         advance();
-    } else if (token.get_type() == TT_WORD) {
+    }
+    if (token.get_type() == TT_WORD) {
+        advance();
         return new VariableAccessNode(token);
     }
     if (token.get_type() == TT_LPAREN) {
@@ -75,10 +87,9 @@ Node* Parser::term() {
 
 Node* Parser::expression() {
     if (current_token.get_type() == TT_WORD) {
-        var_name = current_token.get_value();
-        advance();
-        if (current_token.get_type() == TT_ASSIGN) {
-            advance();
+        var_name = current_token.get_value(); 
+        if (peek().get_type() == TT_ASSIGN) {
+            advance(); advance();
             Node* expr = expression();
             return new AssignmentNode(var_name, expr);
         }
@@ -99,8 +110,4 @@ Node* Parser::binary_operation(function<Node* ()> func, vector<TT> operations) {
         left = new BinaryOperationNode(root_token, left, right);
     }
     return left;
-}
-
-Node* Parser::assignment_operation() {
-
 }

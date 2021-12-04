@@ -2,6 +2,7 @@
 #include "nodes.h"
 #include "number.h"
 #include <vector>
+#include <map>
 #include <iostream>
 #include <algorithm>
 #include <functional>
@@ -14,9 +15,11 @@ class Parser {
         vector<Token> tokens;
         int token_index = -1;
         string var_name;
+        map<string, Token> symbols;
     public:
-        Parser(vector<Token> tokens);
+        Parser(vector<Token> tokens, map<string, Token> symbols);
         void advance();
+        Token peek();
         Node* parse();
         Node* atom();
         Node* power();
@@ -24,5 +27,4 @@ class Parser {
         Node* term();
         Node* expression();
         Node* binary_operation(std::function<Node* ()> func, vector<TT> operations);
-        Node* assignment_operation();
 };
