@@ -60,17 +60,6 @@ Number Interpreter::visit_BinaryOperationNode(Node* node, Context context) {
     visit(node->left, context);
     visit(node->right, context);
 
-    if (node->left->get_token().get_type() == TT_FLOAT) {
-        d1 = 1;
-        d2 = 1;
-        node->right->get_token().set_type(TT_FLOAT);
-    }
-    if (node->right->get_token().get_type() == TT_FLOAT) {
-        d2 = 1;
-        d1 = 1;
-        node->left->get_token().set_type(TT_FLOAT);
-    }
-
     //force token to be a number
     if (node->left->get_token().get_type() == TT_WORD) {
         string var_name = node->left->get_token().get_value();
@@ -81,6 +70,17 @@ Number Interpreter::visit_BinaryOperationNode(Node* node, Context context) {
         string var_name = node->right->get_token().get_value();
         auto it = context.symbols.get_symbols().find(var_name);
         node->right->set_token(it->second);
+    }
+
+    if (node->left->get_token().get_type() == TT_FLOAT) {
+        d1 = 1;
+        d2 = 1;
+        node->right->get_token().set_type(TT_FLOAT);
+    }
+    if (node->right->get_token().get_type() == TT_FLOAT) {
+        d2 = 1;
+        d1 = 1;
+        node->left->get_token().set_type(TT_FLOAT);
     }
 
     Number num1, num2;
