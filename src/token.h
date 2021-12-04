@@ -18,6 +18,11 @@ enum TT {
     TT_INT,
     TT_FLOAT,
     TT_UNARY,
+
+    //    12/02/2021
+    TT_WORD,
+    
+    
     TT_LPAREN,
     TT_RPAREN,
     //array stuff
@@ -53,6 +58,10 @@ class Token {
         TT get_type();
         virtual string get_name();
         virtual string to_string();
+
+
+
+
 };
 
 //token2 allows programmer to tokenize generic values

@@ -24,9 +24,19 @@ class Lexer {
 
         double string_to_float(string);
         bool isBig(string);
+
+
         Number make_number();
+        
+        
         int make_int(string);
         int get_dot_count(string);
+        
+       
+        string make_string(string);
+
+         //   12/1/2021
+        string make_a_word();
 
         stack<char> p_stack;
 

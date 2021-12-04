@@ -28,6 +28,8 @@ string Token::to_string() {
             return "divide";
         case TT_POW:
             return "exponent";
+        case TT_WORD:
+            return "a word";
         case TT_LBRAK:
             return "[";
         case TT_RBRAK:
@@ -44,6 +46,8 @@ string Token::to_string() {
             return "bool:" + std::to_string(bool_value);
         case TT_NULL:
             return "null";
+
+ 
     }
     return "undefined";
 }

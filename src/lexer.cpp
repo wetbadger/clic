@@ -34,6 +34,7 @@ void Lexer::make_tokens() {
                 int integer = number.make_int();
                 t.set_value(integer);
                 t.set_value(number.isInt());
+                
 
             } else {
                 t.set(TT_FLOAT);
@@ -43,6 +44,18 @@ void Lexer::make_tokens() {
             tokens.push_back(t);
             continue;
         }
+        if (isalpha(current_char)) {
+            token_position++;
+            string word = make_a_word();
+            Token t = Token();
+            t.set_value(word);
+            tokens.push_back(t);
+
+        continue;
+        }
+        
+
+
         Token t = Token();
         switch (current_char)  {
             case '+':
@@ -60,6 +73,7 @@ void Lexer::make_tokens() {
                 t.set(TT_MUL);
                 break;
             }
+
             case '/':
             {
                 t.set(TT_DIV);
@@ -140,6 +154,46 @@ Number Lexer::make_number() {
     Number number = Number(num_string, dot_count);
     return number;
 }
+
+
+string Lexer::make_a_word() {
+    //Token number;
+    string word_string = "";
+
+
+    while (current_char != ' '
+        && isalnum(current_char)) {
+
+        // 12/02/2021  
+        word_string.push_back(current_char);
+
+
+        if (end_of_line) {
+            break;
+        }     
+
+
+
+
+        advance();
+
+
+
+       
+    }
+    return word_string;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 vector<Token> Lexer::get_tokens() {
     return tokens;
