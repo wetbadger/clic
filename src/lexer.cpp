@@ -25,7 +25,7 @@ void Lexer::make_tokens() {
             advance();
             continue;
         }
-        if (isdigit(current_char)) {
+        if (isdigit(current_char) || current_char == '.') {
             token_position++;
             Number number = make_number();
             Token t = Token();
@@ -42,6 +42,16 @@ void Lexer::make_tokens() {
             t.set_value(number.get_value());
             tokens.push_back(t);
             continue;
+        }
+        if (isalpha(current_char)) {
+            token_position++;
+            string word = make_a_word();
+            Token t = Token();
+            t.set_value(word);
+            t.set_type(TT_WORD);
+            tokens.push_back(t);
+
+        continue;
         }
         Token t = Token();
         switch (current_char)  {
@@ -83,6 +93,11 @@ void Lexer::make_tokens() {
                     left_parenthesis_error(position);
                 }
                 p_stack.pop();
+                break;
+            }
+            case '=':
+            {
+                t.set(TT_ASSIGN);
                 break;
             }
             case '[':
@@ -143,4 +158,32 @@ Number Lexer::make_number() {
 
 vector<Token> Lexer::get_tokens() {
     return tokens;
+}
+
+string Lexer::make_a_word() {
+    //Token number;
+    string word_string = "";
+
+
+    while (current_char != ' '
+        && isalnum(current_char)) {
+
+        // 12/02/2021  
+        word_string.push_back(current_char);
+
+
+        if (end_of_line) {
+            break;
+        }     
+
+
+
+
+        advance();
+
+
+
+       
+    }
+    return word_string;
 }

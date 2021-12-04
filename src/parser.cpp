@@ -36,6 +36,8 @@ Node* Parser::atom() {
 
     if (token.get_type() == TT_INT || token.get_type() == TT_FLOAT) {
         advance();
+    } else if (token.get_type() == TT_WORD) {
+        return new VariableAccessNode(token);
     }
     if (token.get_type() == TT_LPAREN) {
         advance();
@@ -72,6 +74,15 @@ Node* Parser::term() {
 }
 
 Node* Parser::expression() {
+    if (current_token.get_type() == TT_WORD) {
+        var_name = current_token.get_value();
+        advance();
+        if (current_token.get_type() == TT_ASSIGN) {
+            advance();
+            Node* expr = expression();
+            return new AssignmentNode(var_name, expr);
+        }
+    }
     vector<TT> operations{TT_PLUS, TT_MINUS};
     return binary_operation([this]() { return term(); }, operations);
 }
@@ -88,4 +99,8 @@ Node* Parser::binary_operation(function<Node* ()> func, vector<TT> operations) {
         left = new BinaryOperationNode(root_token, left, right);
     }
     return left;
+}
+
+Node* Parser::assignment_operation() {
+
 }

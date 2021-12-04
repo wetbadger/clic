@@ -42,6 +42,12 @@ string Token::to_string() {
             return "float:" + value;
         case TT_BOOL:
             return "bool:" + std::to_string(bool_value);
+        case TT_WORD:
+            return "a word";
+        case TT_ASSIGN:
+            return "assign";
+        case TT_VAR:
+            return "var:value";
         case TT_NULL:
             return "null";
     }

@@ -84,7 +84,7 @@ Number Interpreter::visit_UnaryNode(Node* node) {
     Number n = visit(node->left);
 
     if (node->get_token().get_type() == TT_MINUS) {
-        n = n.multiplied_by(Number("-1", n.get_dot_count()));
+        n.set_value("-"+n.get_value()); //.multiplied_by(Number("-1", n.get_dot_count()));
         Token new_number = Token();
         if (n.get_dot_count() == 1)
             new_number.set(TT_FLOAT);
@@ -96,3 +96,4 @@ Number Interpreter::visit_UnaryNode(Node* node) {
 
     return n;
 }
+

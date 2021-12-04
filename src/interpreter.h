@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <map>
 #include "nodes.h"
 #include "number.h"
 #include "result.h"
@@ -18,6 +19,15 @@ class Interpreter {
         Number visit_NumberNode(Node*);
         Number visit_BinaryOperationNode(Node*);
         Number visit_UnaryNode(Node*);
+};
+
+class SymbolTable {
+    private:
+        map<Token, Token> symbols;
+        map<Token, Token> global_symbols;
+    public:
+        SymbolTable();
+        map<Token, Token> get(Token name);
 };
 
 #endif

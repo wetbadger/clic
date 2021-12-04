@@ -13,6 +13,7 @@ class Parser {
         Token current_token;
         vector<Token> tokens;
         int token_index = -1;
+        string var_name;
     public:
         Parser(vector<Token> tokens);
         void advance();
@@ -23,4 +24,5 @@ class Parser {
         Node* term();
         Node* expression();
         Node* binary_operation(std::function<Node* ()> func, vector<TT> operations);
+        Node* assignment_operation();
 };

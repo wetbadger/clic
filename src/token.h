@@ -9,6 +9,9 @@ using namespace std;
 enum TT {
     TT_END,
     TT_BOOL,
+    TT_WORD,
+    TT_ASSIGN,
+    TT_VAR,
     //math stuff
     TT_PLUS, 
     TT_MINUS,
@@ -36,7 +39,7 @@ class Token {
         int int_value;
         bool bool_value;
         string value; //store actual value as a string whether int, char or whatever
-        //T value; //Using generics like this turned out to be a nightmare
+        Token* token_pointer;
     public:
         Token();
         Token(TT, string);
@@ -44,6 +47,7 @@ class Token {
         void set_value(int);
         void set_value(bool);
         void set_value(string);
+        void set_value(Token*);
         //void set_value(void*);
         int get_int_value(); 
         bool get_bool_value();
