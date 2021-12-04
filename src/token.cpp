@@ -54,8 +54,6 @@ string Token::to_string() {
             return "a word";
         case TT_ASSIGN:
             return "assign";
-        case TT_VAR:
-            return "var:value";
         case TT_NULL:
             return "null";
     }

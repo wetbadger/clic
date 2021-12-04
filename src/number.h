@@ -8,6 +8,7 @@
 #include <iomanip>
 #include <sstream>
 #include <algorithm>
+#include <vector>
 
 using namespace std;
 
@@ -33,9 +34,11 @@ class Number {
         bool is_greater_than(string, string);
         string big_summation(Number);
 
+        vector<string> errors;
 
     public:
         Number();
+        Number(string, vector<string>);
         Number(string num_string, int dot_count);
         void set_value(string);
         void set_dot_count(int);
@@ -53,6 +56,8 @@ class Number {
         bool addition_overflow(int, int);
         bool subtraction_overflow(int, int);
         bool multiplication_overflow(int, int);
+
+        vector<string> get_errors();
 };
 
 #endif

@@ -1,5 +1,4 @@
 #include "interpreter.h"
-#include "number.h"
 
 Interpreter::Interpreter() {
 
@@ -13,6 +12,12 @@ Token Interpreter::visit(Node* node, Context& context) {
     if (count(operations.begin(), operations.end(), token.get_type())) {
         if (node->right->get_token().get_type() != TT_UNARY) {
             n = visit_BinaryOperationNode(node, context);
+            if (!n.get_errors().empty()) {
+                string err_message = "\n";
+                for (string e : n.get_errors())
+                    err_message += e + "\n";
+                return Token(TT_ERR, err_message);
+            }
             Token new_number = Token();
             if (node->right->get_token().get_type() == TT_FLOAT)
                 new_number.set(TT_FLOAT);
@@ -57,8 +62,20 @@ Number Interpreter::visit_BinaryOperationNode(Node* node, Context context) {
     int d1 = 0; //dot_count
     int d2 = 0;
 
-    visit(node->left, context);
-    visit(node->right, context);
+    Token l = visit(node->left, context);
+    Token r = visit(node->right, context);
+
+    vector<string> errors;
+
+    if (l.get_type() == TT_ERR) {
+        errors.push_back(l.get_value());
+    }
+    if (r.get_type() == TT_ERR) {
+        errors.push_back(r.get_value());
+    }
+    if (!errors.empty()) {
+        return Number("NaN", errors);
+    }
 
     //force token to be a number
     if (node->left->get_token().get_type() == TT_WORD) {
@@ -103,6 +120,7 @@ Number Interpreter::visit_BinaryOperationNode(Node* node, Context context) {
             return Number("0",0);
     }
 }
+
 Number Interpreter::visit_UnaryNode(Node* node, Context context) {
     //cout << "Found UnaryNode" << endl;
 
@@ -130,7 +148,7 @@ Number Interpreter::visit_UnaryNode(Node* node, Context context) {
 Token Interpreter::visit_VariableAccessNode(Node* node, Context context) {
     string var_name = node->get_token().get_value();
     Token value = context.symbols.get(var_name);
-    //check if node exists?
+
     return value;
 }
 
@@ -154,6 +172,15 @@ Token SymbolTable::get (string name) {
         return parent->get(name);
     }
     auto it = symbols.find(name);
+    if (it->first == "") {
+        
+        NameError* err = new NameError(
+            "NameError", 
+            "Variable not defined.");
+        Token name_error = err->tokenize();
+        return name_error;
+        
+    }
     return it->second;
 }
 

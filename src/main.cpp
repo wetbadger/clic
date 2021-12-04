@@ -47,6 +47,8 @@ int main () {
   Context context = Context();
   //global symbols
   context.symbols.set("null", Token(TT_NULL, "null"));
+  context.symbols.set("end", Token(TT_RES, "end"));
+  context.symbols.set("end", Token(TT_RES, "ans"));
   
   cout << "CLIC VERSION 0.0" << endl;
   do {
@@ -66,7 +68,7 @@ int main () {
 
     cout << result.get_value() << endl;
     
-    cout << print_token_list(lex) << endl; //outputs your string as a list of tokens and values
+    //cout << print_token_list(lex) << endl; //outputs your string as a list of tokens and values
   } while (line != "end");
   return 0;
 }

@@ -7,7 +7,7 @@
 #include <map>
 #include "nodes.h"
 #include "number.h"
-#include "result.h"
+#include "error.h"
 
 using namespace std;
 

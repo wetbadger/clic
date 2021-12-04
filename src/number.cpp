@@ -1,7 +1,12 @@
 #include "number.h"
 
 Number::Number() {
-    
+
+}
+
+Number::Number(string value, vector<string> errors) {
+    this->value = value;
+    this->errors = errors;
 }
 
 Number::Number(string num_string, int dot_count) {
@@ -142,6 +147,7 @@ bool Number::subtraction_overflow(int a, int b) {
     if ((b > 0) && (a < -2147483647 + b)) 
         return true;
     if ((b > 0) && (a > 2147483647 - b)) 
+        return false;
     return false;
 }
 
@@ -412,4 +418,8 @@ Number Number::power_of(Number other) {
         return n;
     }
 
+}
+
+vector<string> Number::get_errors() {
+    return errors;
 }

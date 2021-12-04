@@ -12,7 +12,8 @@ enum TT {
     TT_BOOL,
     TT_WORD,
     TT_ASSIGN,
-    TT_VAR,
+    TT_ERR,
+    TT_RES, //reserved words
     //math stuff
     TT_PLUS, 
     TT_MINUS,
