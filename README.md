@@ -11,8 +11,10 @@ g++
 
 Build Instructions:
 
-    git clone https://github.com/wetbadger/kmir.git (skip this step if given a tar.gz)
+(skip first step if given a tar.gz)
 
+    git clone https://github.com/wetbadger/kmir.git
+    
     cd kmir
     mkdir build
     cd build
