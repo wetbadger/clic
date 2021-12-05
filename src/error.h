@@ -21,6 +21,7 @@ protected:
     
 public:
 
+    //with position and extra stuff
     explicit Except(const string& msg = "Error", 
             int err_num = 0, 
             int err_off = 0, 
@@ -84,20 +85,20 @@ public:
     }
 
     virtual Token tokenize() {
-        string message = file_name + ": " + file_text;
+        string message = file_name + ": " + file_text + "\n";
         Token error = Token(TT_ERR, message);
         return error;
     }
 
 };
-//Exception Classes
 
+//Exception Classes
 class NameError : public Except {
     public:
         using Except::Except;
 };
 
-//Exceptions
+//Exception Functions
 static void too_many_dots_error(string num_string, Position position) {
     string spaces = "";
         for (int i = 0; i < num_string.length(); i++) {

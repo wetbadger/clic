@@ -13,9 +13,9 @@ Token Interpreter::visit(Node* node, Context& context) {
         if (node->right->get_token().get_type() != TT_UNARY) {
             n = visit_BinaryOperationNode(node, context);
             if (!n.get_errors().empty()) {
-                string err_message = "\n";
+                string err_message = "";
                 for (string e : n.get_errors())
-                    err_message += e + "\n";
+                    err_message += e;
                 return Token(TT_ERR, err_message);
             }
             Token new_number = Token();
@@ -46,9 +46,7 @@ Token Interpreter::visit(Node* node, Context& context) {
     }
     return t;
 }
-void Interpreter::no_visit_method(Node* node, Context context) {
-    //raise exception
-}
+
 Number Interpreter::visit_NumberNode(Node* node, Context context) {
     //cout << "Found NumberNode " << node->get_token().get_value() << endl;
     int dtcnt = 0;

@@ -4,12 +4,14 @@ The group project is just going to be getting math to work on the command line.
 ✓ Addition
 ✓ Multiplication
 ✓ Subtraction
-Division
+✓ Division
 ✓ Exponents
 ✓ Parenthesis
-Errors
+* Errors
 ✓ Unary
 ✓ Float
-Variables
+✓ Variables
 Modulus
-Big numbers
+* Big numbers
+
+*needs more work

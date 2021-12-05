@@ -2,11 +2,27 @@ CLIC (Command Line Interface Calculator)
 
 CLIC is a command line program intended to have all the functionality of a scientific calculator.
 
+Github link: https://github.com/wetbadger/kmir
+
+How to use:
+
+Enter any mathematical expression. Supported operators are:
++ addition
+- subtraction
+* multiplication
+/ division
+^ exponent
+() left and right parenthesis
+
+The correct answer will print to the console.
+
+Type ‘end’ to close the program.
+
 How it's made:
 
 Tokens:
 
-Tokens are how the computer identifies the fundamental elements of an expression. For example, given the expression "1 + 2 * 3" we can see that we are working with 3 integers and two operators. Each token is distiguished by enumerated types such as TT_INT, where TT stands for "Token Type."
+Tokens are how the computer identifies the fundamental elements of an expression. For example, given the expression "1 + 2 * 3" we can see that we are working with 3 integers and two operators. Each token is distinguished by enumerated types such as TT_INT, where TT stands for "Token Type."
 
 Lexer:
 
@@ -20,14 +36,17 @@ This type of data structure, known as an abstract-syntax tree, is widely used in
 
 Integers and Floating points:
 
-In the future we want to make something that can solve expressions with any size number. Currently numbers over 2^31 can only be added, because multiplication with large numbers is a complicated subject. 
+In the future we want to make something that can solve expressions with any size number. Currently numbers over 2^31 can only be added, because multiplication with large numbers is a complicated subject.
 
-Similarly, floating point arithmatic has many nuanced details. We were not able to resolve rounding errors or have greater than 16 decimal places of precision.
+Similarly, floating point arithmetic has many nuanced details. We were not able to resolve rounding errors or have greater than 16 decimal places of precision.
 
-Strings are only limited by the amount of memory a computer has, and so we chose to store the value of each number as a string. This way we can store a representation of any arbitrarily large number. Doing arithmatic with these numbers is another story.
+Strings are only limited by the amount of memory a computer has, and so we chose to store the value of each number as a string. This way we can store a representation of any arbitrarily large number. Doing arithmetic with these numbers is another story.
 
+Error messages:
 
+Writing error messages was a bit like a game of whack-a-mole. There are many erroneous combinations of symbols a user could put into a calculator, and it is hard to guess them all. We weren’t sure whether to print errors as a function, or to make each error a separate class, so right now we use both approaches. Some errors we created are: NameError for unassigned variables, left and right parenthesis errors, and invalid number errors. We tried to decide on a good convention for throwing errors, so more can be added in the future.
 
-Abstract Syntax Tree:
+Keyword Arguments:
 
-CLIC allows for complex expressions that follow order of operations as seen in scientific calculators.
+Running the program with the -v argument will start verbose mode. Right now this only displays the tokens as a list.
+

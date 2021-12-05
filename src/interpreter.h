@@ -32,7 +32,6 @@ class Interpreter {
     public:
         Interpreter();
         Token visit(Node*, Context&);
-        void no_visit_method(Node*, Context);
         Number visit_NumberNode(Node*, Context);
         Number visit_BinaryOperationNode(Node*, Context);
         Number visit_UnaryNode(Node*, Context);

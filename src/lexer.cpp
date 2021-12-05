@@ -125,7 +125,6 @@ void Lexer::make_tokens() {
 }
 
 Number Lexer::make_number() {
-    //Token number;
     string num_string = "";
     int dot_count = 0;
 

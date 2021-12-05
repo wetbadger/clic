@@ -44,6 +44,10 @@ double Number::make_float() {
 
 int Number::make_int() {
 
+    if (value == "undefined") {
+        return 0;
+    }
+
     if (isBig()) {
         isInteger = false;
         return 0;
@@ -231,7 +235,7 @@ string Number::big_summation(Number other)
     reverse(num2.begin(), num2.end());
  
     int carry = 0;
-    if (state == "++" || state == "--") {
+    if (state == "++" || state == "--") { //long addition
         for (int i=0; i<n1; i++)
         {
             int sum;
@@ -249,7 +253,7 @@ string Number::big_summation(Number other)
     
         if (carry)
             result.push_back(carry+'0');
-    } else {
+    } else { //long subtraction
         for (int i=0; i<n1; i++)
         {
             int dif;
@@ -350,7 +354,6 @@ Number Number::subtracted_from(Number other) {
     } else {
         double num1 = make_float();
         double num2 = other.make_float();
-        //TODO: check if numbers overflow
         //convert with max precision
         stringstream stream;
         stream << fixed << setprecision(16) << (num1-num2);
@@ -365,11 +368,15 @@ Number Number::subtracted_from(Number other) {
 
 Number Number::multiplied_by(Number other) {
     if (dot_count ==  0 || other.dot_count == 0) {
+        if (isBig() || other.isBig()) {
+            cout << "The two numbers multiplied together are too big." << endl;
+            return Number("undefined", 0);
+        }
         int num1 = make_int();
         int num2 = other.make_int();
         if (multiplication_overflow(num1, num2)) {
-            cout << "The two numbers multiplied together are too big: TODO handle big numbers." << endl;
-            return Number("0", 0);
+            cout << "The two numbers multiplied together are too big." << endl;
+            return Number("undefined", 0);
         }
         return Number(to_string(num1 * num2), 0);
     } else {
@@ -386,6 +393,10 @@ Number Number::multiplied_by(Number other) {
 }
 
 Number Number::divided_by(Number other) {
+    if (isBig() || other.isBig()) {
+         cout << "A number is to big to divide." << endl;
+        return Number("undefined", 0);
+    }
     double num1 = make_float();
     double num2 = other.make_float();
     //convert with max precision
@@ -399,13 +410,18 @@ Number Number::divided_by(Number other) {
 
 Number Number::power_of(Number other) {
     if ((dot_count ==  0 || other.dot_count == 0) && other.get_value().at(0) != '-') {
+        if (isBig() || other.isBig()) {
+            cout << "A number is to big to exponent." << endl;
+            return Number("undefined", 0);
+        }
         int num1 = make_int();
         int num2 = other.make_int();
-        if (multiplication_overflow(num1, num2)) {
-            cout << "The numbers are too big: TODO handle big numbers." << endl;
-            return Number("0", 0);
+        double powed = pow(num1, num2);
+        if (powed == HUGE_VAL || powed > 2147483647) {
+            cout << "The number is too big to represent" << endl;
+            return Number("undefined", 0);
         }
-        return Number(to_string(static_cast<int>(pow(num1, num2))), 0);
+        return Number(to_string(static_cast<int>(powed)), 0);
     } else {
         float num1 = make_float();
         float num2 = other.make_float();
