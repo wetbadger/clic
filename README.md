@@ -9,6 +9,11 @@ cmake
 
 g++
 
+Build Instructions:
+
+    git clone https://github.com/wetbadger/kmir.git
+
+    cd kmir
     mkdir build
     cd build
     cmake ..
