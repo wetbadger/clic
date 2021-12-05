@@ -1,10 +1,4 @@
-﻿Ben Alexander
 
-Aidan Evans
-
-Moses Abarquez
-
-Natalia Zamudio
 
 **CLIC (Command Line Interface Calculator)**
 
