@@ -19,7 +19,8 @@ Token Interpreter::visit(Node* node, Context& context) {
                 return Token(TT_ERR, err_message);
             }
             Token new_number = Token();
-            if (node->right->get_token().get_type() == TT_FLOAT)
+            if (node->right->get_token().get_type() == TT_FLOAT || 
+                node->left->get_token().get_type() == TT_FLOAT)
                 new_number.set(TT_FLOAT);
             else
                 new_number.set(TT_INT);
