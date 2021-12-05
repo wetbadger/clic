@@ -4,13 +4,11 @@
 #include <exception>
 #include <iostream>
 #include "position.h"
+#include "token.h"
 
 using namespace std;
 
-//copy-pasted from:
-//https://riptutorial.com/cplusplus/example/23640/custom-exception
-
-class Except: virtual public std::exception {
+class Except: virtual public exception {
     
 protected:
 
@@ -23,12 +21,25 @@ protected:
     
 public:
 
-    explicit 
-    Except(const string& msg = "Error", int err_num = 0, int err_off = 0, string f_name = "Unknown Error", string text = "An Error Occured", int ln_num = 0):
+    //with position and extra stuff
+    explicit Except(const string& msg = "Error", 
+            int err_num = 0, 
+            int err_off = 0, 
+            string f_name = "Unknown Error", 
+            string text = "An Error Occured", 
+            int ln_num = 0):
         error_number(err_num),
         error_offset(err_off),
         error_message(msg),
         line_number(ln_num),
+        file_name(f_name),
+        file_text(text)
+        {}
+
+    //no position
+    explicit Except(
+            string f_name = "Unknown Error", 
+            string text = "An Error Occured"):
         file_name(f_name),
         file_text(text)
         {}
@@ -73,8 +84,21 @@ public:
         return file_text;
     }
 
+    virtual Token tokenize() {
+        string message = file_name + ": " + file_text + "\n";
+        Token error = Token(TT_ERR, message);
+        return error;
+    }
+
 };
-//Exceptions
+
+//Exception Classes
+class NameError : public Except {
+    public:
+        using Except::Except;
+};
+
+//Exception Functions
 static void too_many_dots_error(string num_string, Position position) {
     string spaces = "";
         for (int i = 0; i < num_string.length(); i++) {
@@ -116,6 +140,23 @@ static void left_parenthesis_error(Position position) {
 
     try {
         throw(Except("\nParseError: Expected a left parenthesis somewhere.\n", 
+                        3, position.get_column()+1, 
+                        position.get_file_name(), position.get_file_text()));
+    } catch (const Except& e) {
+        std::cout<<e.what()
+            <<"\n  Err "<<e.getErrorNumber()
+            <<" - Column: "<<e.getErrorOffset()
+            <<"\n  File name: "<<e.getFilename()
+            <<"\n  Line "<<e.getLine()
+            <<": \""<<e.printLine()<<"\"\n"
+            <<endl;
+    }
+}
+
+static void operator_missing_function(string op) {
+    Position position = Position(0, 0, 0, "", "");
+     try {
+        throw(Except("\nProgrammerError: Operator not given a function.\n", 
                         3, position.get_column()+1, 
                         position.get_file_name(), position.get_file_text()));
     } catch (const Except& e) {

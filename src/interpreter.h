@@ -4,22 +4,39 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <map>
 #include "nodes.h"
 #include "number.h"
-#include "result.h"
+#include "error.h"
 
 using namespace std;
 
-class Interpreter {
+class SymbolTable {
     private:
-        string method_name;
+        map<string, Token> symbols;
+        SymbolTable* parent;
+        bool has_parent = false;
+    public:
+        SymbolTable();
+        map<string, Token> get_symbols();
+        Token get(string name);
+        void set(string name, Token value);
+        void remove(string name);
+};
+
+struct Context {
+    SymbolTable symbols;
+};
+
+class Interpreter {
     public:
         Interpreter();
-        Number visit(Node*);
-        void no_visit_method(Node*);
-        Number visit_NumberNode(Node*);
-        Number visit_BinaryOperationNode(Node*);
-        Number visit_UnaryNode(Node*);
+        Token visit(Node*, Context&);
+        Number visit_NumberNode(Node*, Context);
+        Number visit_BinaryOperationNode(Node*, Context);
+        Number visit_UnaryNode(Node*, Context);
+        Token visit_VariableAccessNode(Node*, Context);
+        Token visit_VariableAssignmentNode(Node*, Context&);
 };
 
 #endif

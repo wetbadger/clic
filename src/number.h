@@ -4,6 +4,11 @@
 #include <iostream>
 #include <string>
 #include <cctype>
+#include <math.h>
+#include <iomanip>
+#include <sstream>
+#include <algorithm>
+#include <vector>
 
 using namespace std;
 
@@ -17,23 +22,42 @@ class Number {
         int dot_count;
         bool isInteger;
 
+        bool isBig();
+        
+        //TODO: Read this https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html
+        double make_float();
+        bool isBigFloat();
+        double value_to_float(int precision = 16);
+        void remove_trailing_zeros();
+        string remove_leading_zeros(string);
+
+        bool is_greater_than(string, string);
+        string big_summation(Number);
+
+        vector<string> errors;
+
     public:
         Number();
+        Number(string, vector<string>);
         Number(string num_string, int dot_count);
         void set_value(string);
         void set_dot_count(int);
         string get_value();
-        int get_dot_count();
+        int get_dot_count(); 
+
         int make_int();
         bool isInt();
-        bool isBig();
-        double string_to_float();
 
         Number added_to(Number other);
         Number subtracted_from(Number other);
         Number multiplied_by(Number other);
+        Number divided_by(Number other);
+        Number power_of(Number other);
         bool addition_overflow(int, int);
+        bool subtraction_overflow(int, int);
         bool multiplication_overflow(int, int);
+
+        vector<string> get_errors();
 };
 
 #endif
