@@ -393,9 +393,11 @@ Number Number::multiplied_by(Number other) {
 }
 
 Number Number::divided_by(Number other) {
-    if (isBig() || other.isBig()) {
-         cout << "A number is to big to divide." << endl;
-        return Number("undefined", 0);
+    if (dot_count ==  0 || other.dot_count == 0) {
+        if (isBig() || other.isBig()) {
+            cout << "A number is to big to divide." << endl;
+            return Number("undefined", 0);
+        }
     }
     double num1 = make_float();
     double num2 = other.make_float();
