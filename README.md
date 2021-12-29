@@ -1,4 +1,4 @@
-# kmir
+# clic
 # installation
 
 You will need:
@@ -13,9 +13,9 @@ Build Instructions:
 
 (skip first step if given a tar.gz)
 
-    git clone https://github.com/wetbadger/kmir.git
+    git clone https://github.com/wetbadger/clic.git
     
-    cd kmir
+    cd clic
     mkdir build
     cd build
     cmake ..
@@ -24,5 +24,5 @@ Build Instructions:
     
 run with:
     
-    ./kmir
+    ./clic
     
