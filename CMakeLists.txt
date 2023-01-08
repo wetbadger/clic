@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16.3)
 
-project(kmir)
+project(clic)
 
 add_executable(${PROJECT_NAME}
 src/interpreter.cpp
